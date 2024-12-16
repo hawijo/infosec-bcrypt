@@ -12,45 +12,30 @@ const someOtherPlaintextPassword = 'pass123';
 //START_ASYNC -do not remove notes, place code between correct pair of notes.
 const bcrypt = require('bcrypt'); 
 
-
+bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log('Hash:', hash);
+  
+  bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log('Do passwords match?', res);
+  });
+});
 //END_ASYNC
+
 
 //START_SYNC
 
-bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
-  console.log(hash);
-  bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
-    console.log(res);
-  });
-});
-
+// Typically, you would put bcrypt.hashSync() or bcrypt.compareSync() here if asked.
+// No changes required here for the async challenge. 
 
 //END_SYNC
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const PORT = process.env.PORT || 3000;
