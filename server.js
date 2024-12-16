@@ -16,6 +16,7 @@ const bcrypt = require('bcrypt');
 //END_ASYNC
 
 //START_SYNC
+
 bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
   console.log(hash);
   bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
@@ -56,5 +57,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log("Listening on port:", PORT)
 });
-
-app.listen(process.env.PORT || 3000, () => {});
